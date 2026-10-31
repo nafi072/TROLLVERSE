@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10101b">
+<meta name="description" content="TROLLVERSE: Don't Trust the Level — an original troll platformer and puzzle game.">
+<title>TROLLVERSE: Don't Trust the Level</title>
+<style>
+:root{--bg:#0c0d16;--panel:#171a2a;--panel2:#20243a;--ink:#f5f4ff;--muted:#a9aec8;--cyan:#7cf7e8;--pink:#ff6b9d;--gold:#ffd36e;--line:#343952}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at top,#1b2040 0,#0c0d16 58%);color:var(--ink);font-family:ui-rounded,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{overflow-x:hidden}button{font:inherit;color:inherit;cursor:pointer;border:1px solid var(--line);background:#242941;border-radius:12px;padding:11px 15px;font-weight:750;transition:transform .12s,border-color .12s,background .12s}button:hover{border-color:var(--cyan);transform:translateY(-1px)}button:active{transform:translateY(1px)}button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.primary{background:linear-gradient(135deg,#5c4be7,#a44fe3);border-color:#a28aff;box-shadow:0 8px 28px #7557ff35}.accent{background:#153d43;border-color:#2c8787}.danger{background:#49243a;border-color:#8b3d65}.quiet{background:transparent}.hidden{display:none!important}
+header{max-width:1120px;margin:auto;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:1.3px}.brandmark{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#6f5aff,#f15d9e);font-size:22px;box-shadow:0 6px 24px #8b59ff45}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2.5px;font-weight:800}.top-actions{display:flex;gap:8px;align-items:center}
+main{max-width:1120px;margin:auto;padding:10px 22px 36px}.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:24px;align-items:center;padding:30px 0 22px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #3b4261;border-radius:999px;padding:7px 11px;color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:1.3px;background:#171b2c}.dot{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink)}h1{font-size:clamp(38px,6.8vw,76px);line-height:.95;letter-spacing:-3px;margin:18px 0 16px;font-weight:1000}h1 span{display:block;color:var(--cyan);text-shadow:0 0 35px #57dcd333}.hero p{font-size:16px;color:var(--muted);line-height:1.65;max-width:570px}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.hero-art{position:relative;min-height:310px;border:1px solid #343954;border-radius:28px;overflow:hidden;background:linear-gradient(#25294a,#111522 76%);box-shadow:0 24px 80px #0005}.hero-art:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 52% 40%,#785cff55,transparent 35%),linear-gradient(180deg,transparent 55%,#0b0c16)}.moon{position:absolute;width:72px;height:72px;border-radius:50%;background:#d4d7ff;top:35px;right:48px;box-shadow:0 0 45px #aeb7ff88}.mountain{position:absolute;bottom:65px;width:0;height:0;border-left:190px solid transparent;border-right:190px solid transparent;border-bottom:170px solid #262a49}.mountain.m2{left:35%;border-left-width:150px;border-right-width:150px;border-bottom-width:130px;border-bottom-color:#343357}.ground{position:absolute;bottom:0;left:0;right:0;height:78px;background:repeating-linear-gradient(90deg,#252944 0 44px,#303653 44px 47px);border-top:4px solid #79e9d7}.hero-door{position:absolute;right:20%;bottom:76px;width:62px;height:92px;border:4px solid #d9d7ff;border-bottom:0;border-radius:32px 32px 0 0;background:linear-gradient(90deg,#5a4eb8,#24234d);box-shadow:0 0 24px #a394ff88}.hero-door:after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:var(--gold);right:8px;top:48px}.hero-player{position:absolute;left:28%;bottom:75px;width:38px;height:43px;border-radius:12px 12px 8px 8px;background:linear-gradient(135deg,#a7fff1,#54b9c2);box-shadow:0 0 22px #63e7d977;animation:bob 2s ease-in-out infinite}.hero-player:before{content:"";position:absolute;left:7px;top:9px;width:5px;height:6px;border-radius:50%;background:#152136;box-shadow:14px 0 #152136}.hero-player:after{content:"";position:absolute;bottom:-7px;left:3px;width:12px;height:10px;background:#68d2d4;border-radius:3px;box-shadow:17px 0 #68d2d4}@keyframes bob{50%{transform:translateY(-7px)}}.art-label{position:absolute;left:16px;top:16px;background:#101323bb;border:1px solid #424665;padding:7px 10px;border-radius:10px;font-size:11px;font-weight:900;letter-spacing:1.5px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 34px}.stat{padding:15px;border:1px solid var(--line);border-radius:16px;background:#151827a8}.stat strong{font-size:23px;display:block}.stat span{font-size:11px;letter-spacing:1.2px;color:var(--muted);font-weight:900}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:24px 0 13px}.section-head h2{margin:0;font-size:24px;letter-spacing:-.7px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.level-card{position:relative;min-height:145px;text-align:left;padding:15px;overflow:hidden;background:linear-gradient(145deg,#20253c,#141724);border-color:#343a56}.level-card:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-24px;bottom:-35px;background:var(--glow,#806bff);opacity:.18;filter:blur(2px)}.level-card .num{color:var(--cyan);font-size:11px;letter-spacing:1.5px;font-weight:1000}.level-card strong{display:block;font-size:16px;margin:8px 0 5px}.level-card small{color:var(--muted);line-height:1.4;display:block;max-width:170px}.level-card.locked{opacity:.45;cursor:not-allowed}.level-card .medal{position:absolute;right:12px;top:12px;font-size:18px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}.feature{padding:17px;border-radius:16px;background:#151827;border:1px solid var(--line)}.feature .ico{font-size:24px}.feature strong{display:block;margin:10px 0 5px}.feature p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+footer{max-width:1120px;margin:auto;padding:18px 22px 35px;color:#7e85a4;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #292d43}
+#gameScreen{max-width:1120px;margin:0 auto;padding:0 16px 24px}.game-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}.game-title{font-weight:950}.game-title small{display:block;color:var(--muted);font-size:11px;letter-spacing:1px;margin-top:3px}.game-actions{display:flex;gap:7px;flex-wrap:wrap}.hud{display:flex;gap:8px;flex-wrap:wrap}.pill{border:1px solid #373d5a;background:#151a2b;border-radius:10px;padding:7px 10px;font-size:12px;color:var(--muted)}.pill b{color:var(--ink)}
+.game-shell{position:relative;border:1px solid #3b4261;border-radius:18px;overflow:hidden;background:#0b1020;box-shadow:0 22px 60px #0006}.game-shell canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;touch-action:none;outline:none}.game-message{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;background:#090b15b8;backdrop-filter:blur(7px)}.message-card{max-width:430px;width:100%;padding:23px;border:1px solid #555d82;border-radius:20px;text-align:center;background:linear-gradient(145deg,#202641f5,#121522f5);box-shadow:0 20px 60px #0009}.message-card .big{font-size:42px}.message-card h2{margin:6px 0 8px;font-size:27px}.message-card p{color:var(--muted);line-height:1.55;font-size:14px}.message-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px}.game-help{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 2px;color:var(--muted);font-size:12px}.key{display:inline-block;border:1px solid #4c526f;border-bottom-width:3px;border-radius:5px;padding:2px 6px;color:#f2f2ff;background:#20243a;margin:0 2px}.touch-controls{display:none;justify-content:space-between;gap:12px;margin:12px 0 0;user-select:none;-webkit-user-select:none}.touch-cluster{display:flex;gap:9px}.touch-controls button{width:64px;height:58px;font-size:21px;background:#252b45dd;border:1px solid #586183;touch-action:none;box-shadow:0 5px 0 #101323}.touch-controls button.active{background:#365e65;transform:translateY(3px);box-shadow:0 2px 0 #101323}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#202641;border:1px solid #657095;padding:10px 15px;border-radius:12px;z-index:20;box-shadow:0 8px 28px #0007;font-size:13px;max-width:90vw;text-align:center}
+@media(max-width:760px){header{padding:14px 15px}main{padding:5px 15px 28px}.hero{grid-template-columns:1fr;padding-top:17px;gap:14px}.hero-art{min-height:230px}.mountain{border-left-width:150px;border-right-width:150px;border-bottom-width:130px}.mountain.m2{border-left-width:120px;border-right-width:120px;border-bottom-width:105px}.moon{width:52px;height:52px;top:25px;right:25px}h1{letter-spacing:-2px}.hero p{font-size:14px}.stats{gap:7px;margin-bottom:26px}.stat{padding:11px}.stat strong{font-size:19px}.stat span{font-size:9px}.levels{grid-template-columns:repeat(2,1fr);gap:9px}.level-card{min-height:132px;padding:12px}.features{grid-template-columns:1fr}.section-head h2{font-size:21px}.top-actions .hide-mobile{display:none}#gameScreen{padding:0 9px 18px}.game-shell{border-radius:12px}.game-shell canvas{aspect-ratio:4/3}.game-help{font-size:11px}.touch-controls{display:flex}.touch-controls button{width:59px;height:54px}.game-top{margin:6px 0}.hud{gap:5px}.pill{padding:6px 8px;font-size:11px}}
+@media(hover:none) and (pointer:coarse){.touch-controls{display:flex}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="brandmark">✦</div><div>TROLLVERSE<small>DON'T TRUST THE LEVEL</small></div></div>
+  <div class="top-actions"><button class="quiet hide-mobile" id="howBtn">How to play</button><button class="quiet" id="soundBtn" aria-label="Toggle sound">🔊 Sound</button></div>
+</header>
+<main id="homeScreen">
+  <section class="hero">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> AN ORIGINAL RAGE PLATFORMER</div>
+      <h1>TRUST NO<span>THING.</span></h1>
+      <p>Every floor has a secret. Every exit has a question. Run, jump, experiment, and outsmart a world that refuses to play fair. Learn the trick. Beat the level. Question everything.</p>
+      <div class="hero-actions"><button class="primary" id="continueBtn">▶ Play game</button><button id="levelSelectBtn">Choose a level</button></div>
+    </div>
+    <div class="hero-art" aria-label="Illustration of a mysterious platforming level">
+      <div class="art-label">WORLD 01 / THE UNWELCOME</div><div class="moon"></div><div class="mountain"></div><div class="mountain m2"></div><div class="hero-door"></div><div class="hero-player"></div><div class="ground"></div>
+    </div>
+  </section>
+  <div class="stats">
+    <div class="stat"><strong id="statLevels">30</strong><span>ORIGINAL LEVELS</span></div>
+    <div class="stat"><strong id="statDeaths">0</strong><span>TOTAL DEATHS</span></div>
+    <div class="stat"><strong id="statBest">—</strong><span>BEST CLEAR TIME</span></div>
+  </div>
+  <section id="levelSection">
+    <div class="section-head"><div><h2>Pick your poison</h2><p>Thirty original levels across three worlds. Each one teaches you not to trust it.</p></div><span class="eyebrow">3 WORLDS</span></div>
+    <div class="levels" id="levelGrid"></div>
+  </section>
+  <section>
+    <div class="section-head"><div><h2>What awaits you</h2><p>Learn the rules. Then learn why the rules changed.</p></div></div>
+    <div class="features">
+      <div class="feature"><div class="ico">🧠</div><strong>Mind-bending puzzles</strong><p>Look for clues, test assumptions, and find the trick hiding in plain sight.</p></div>
+      <div class="feature"><div class="ico">🌳</div><strong>Hostile forest</strong><p>Watch the branches. Some scenery is scenery; some scenery has opinions.</p></div>
+      <div class="feature"><div class="ico">🚪</div><strong>Questionable exits</strong><p>Reach the door, but don't celebrate until the level says so.</p></div>
+    </div>
+  </section>
+</main>
+<section id="gameScreen" class="hidden">
+  <div class="game-top">
+    <div class="game-title"><span id="gameLevelName">01 — First Impressions</span><small id="gameWorldName">WORLD 01 · THE UNWELCOME</small></div>
+    <div class="hud"><div class="pill">DEATHS <b id="deathHud">0</b></div><div class="pill">TIME <b id="timeHud">00:00</b></div><div class="pill">LEVEL <b id="levelHud">1/30</b></div></div>
+    <div class="game-actions"><button id="restartBtn">↻ Restart</button><button id="exitBtn">☰ Menu</button></div>
+  </div>
+  <div class="game-shell">
+    <canvas id="gameCanvas" width="960" height="540" tabindex="0" aria-label="TROLLVERSE platform game"></canvas>
+    <div class="game-message hidden" id="gameOverlay"><div class="message-card"><div class="big" id="overlayIcon">✦</div><h2 id="overlayTitle">Ready?</h2><p id="overlayText">Move, jump, and trust absolutely nothing.</p><div class="message-actions" id="overlayActions"></div></div></div>
+  </div>
+  <div class="game-help"><div><span class="key">←</span><span class="key">→</span> move &nbsp; <span class="key">Space</span>/<span class="key">↑</span> jump &nbsp; <span class="key">R</span> restart</div><div>Touch controls available on mobile · Progress saves on this device</div></div>
+  <div class="touch-controls" id="touchControls">
+    <div class="touch-cluster"><button data-key="left" aria-label="Move left">◀</button><button data-key="right" aria-label="Move right">▶</button></div>
+    <div class="touch-cluster"><button data-key="jump" aria-label="Jump">⬆</button></div>
+  </div>
+</section>
+<footer><span>© TROLLVERSE · An original browser game prototype</span><span>Built for curious minds and stubborn players.</span></footer>
+<div id="toast" class="toast hidden" role="status"></div>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const canvas=$('gameCanvas'), ctx=canvas.getContext('2d');
+const W=960,H=540, FLOOR=472, GRAVITY=1750;
+const WORLDS=['WORLD 01 · THE UNWELCOME','WORLD 02 · THE WOBBLING WILDS','WORLD 03 · THE FINAL JOKE'],ACC=['#78f2dc','#ff7b9c','#a8e66b','#c4a5ff','#ffd36e','#77d7ff','#ff9d72','#ff7bb0','#9bea83','#d2b5ff'],FG=[[0,960]];
+const levelData=[
+{name:'First Impressions',sub:'A perfectly normal beginning.',hint:'Walk to the door. What could possibly go wrong?',g:FG,ex:[865,472]},
+{name:'The Floor Is Listening',sub:'Watch where you step.',hint:'Spikes wake up when you get close. Jump early.',g:FG,ft:[[410,54,320],[570,54,500]],ex:[865,472]},
+{name:'Branch Manager',sub:'The forest has a point to make.',hint:'A tree can be more than decoration. Watch the canopy.',g:FG,tr:[[430,1,350],[660,.8,590]],ex:[865,472]},
+{name:'Exit Interview',sub:'Not every door is an answer.',hint:'The first exit is lying. Look for another way.',g:FG,fd:[[465,472]],sp:[[600,50]],sg:[[370,'EXIT →']],ex:[875,472]},
+{name:'The Button Problem',sub:'The room is the puzzle.',hint:'Find the switch. Then notice what it changes.',g:FG,sw:[340],gt:[[530,55]],ex:[865,472]},
+{name:'A Gap in Logic',sub:'The obvious path is incomplete.',hint:'The gap is too wide. Press the switch.',g:[[0,260],[700,260]],sw:[150],hp:[[310,410,80],[440,360,80],[570,410,80]],sg:[[100,'PRESS ME']],ex:[865,472]},
+{name:'A Little Patience',sub:'Timing is a kind of key.',hint:'Observe the spikes before you commit.',g:FG,td:[[410,56,2.2,.55],[535,60,2.2,0],[670,50,2.2,1.1]],ex:[865,472]},
+{name:'The Unhelpful Sign',sub:'Words are not always instructions.',hint:'The sign is trying to help. Or is it?',g:FG,sg:[[335,'DO NOT JUMP']],sp:[[475,70]],ex:[865,472]},
+{name:'Forest of Bad Ideas',sub:'Everything looks suspicious now.',hint:'Use the safe platforms, but do not trust the tree.',g:[[0,380],[610,350]],f:[[445,390,105]],tr:[[520,1,455]],ft:[[675,48,640]],ex:[875,472]},
+{name:'Trust Issues',sub:'You have learned nothing. Excellent.',hint:'Combine what you learned. The exit is not the whole story.',g:FG,tr:[[510,1,435]],sw:[360],ft:[[590,50,555]],fd:[[280,472]],sg:[[730,'THE END?']],ex:[865,472],lock:1},
+{name:'Crumbs',sub:'Do not stand still.',hint:'Brown platforms crumble. Keep moving.',g:[[0,230],[710,250]],c:[[230,472,80],[310,472,80],[390,472,80],[470,472,80],[550,472,80],[630,472,80]],ex:[890,472]},
+{name:'Spring Fling',sub:'Up is a direction.',hint:'Orange pads launch you. Walk onto one.',g:[[0,200],[820,140]],spr:[[240,460,40]],f:[[330,270,110],[500,320,100],[660,370,100]],ex:[890,472]},
+{name:'Patrol',sub:'Something is walking.',hint:'Red blobs patrol. Jump over them.',g:FG,w:[[300,640,110],[650,840,140]],ex:[905,472]},
+{name:'Hidden Pits',sub:'The ground has second thoughts.',hint:'The floor disappears as you approach. Jump early.',g:[[0,250],[330,70],[480,70],[630,330]],vf:[[250,80,170],[400,80,320],[550,80,470]],ex:[890,472]},
+{name:'Ferry Service',sub:'Wait for your ride.',hint:'Hop on the moving platform at the right moment.',g:[[0,260],[720,240]],mv:[[410,472,90,150,1,'x']],ex:[890,472]},
+{name:'Door Dodger',sub:'The exit has legs.',hint:'The door moves when you get close. Go back for it.',g:FG,ex:[860,472],jump:[430,472],sp:[[560,60],[690,50]]},
+{name:'Switcheroo',sub:'Make your own bridge.',hint:'Pressing the switch changes the room.',g:[[0,300],[760,200]],sw:[120],hp:[[330,410,80],[460,360,80],[590,410,80]],sg:[[170,'TRUST ME']],ex:[880,472]},
+{name:'Tree Tunnel',sub:'Timber!',hint:'Trees fall when you pass them. Time your run.',g:FG,tr:[[430,1,350],[640,.9,560]],sp:[[520,50]],ex:[890,472]},
+{name:'Spring Roulette',sub:'Bounce, then pray.',hint:'Bounce up, then watch the crumbling platforms.',g:[[0,180],[820,140]],spr:[[210,460,40]],f:[[330,270,110]],c:[[520,320,110],[700,380,110]],ex:[890,472]},
+{name:'Guardian Gate',sub:'Everything at once. A small taste.',hint:'Crumble, dodge the patrol, then catch the ferry.',g:[[0,200],[500,130],[820,140]],c:[[230,472,70],[310,472,70],[390,472,70]],w:[[500,630,90]],mv:[[715,472,90,65,1.2,'x']],ex:[895,472]},
+{name:'Cardboard Palace',sub:'Pink doors lie. Some bite.',hint:'Pink doors are fake. Some are traps.',g:FG,fd:[[300,472,1],[450,472,1]],sg:[[270,'EXIT →']],sp:[[600,60]],ex:[880,472]},
+{name:'Slow Rain',sub:'Patience, again.',hint:'The spikes pulse in a rhythm. Find it.',g:FG,td:[[300,50,1.6,0],[420,50,1.6,.8],[540,50,1.6,0],[660,50,1.6,.8],[780,50,1.6,0]],ex:[915,472]},
+{name:'Crumble Canyon',sub:'The staircase is made of cookies.',hint:'Do not stop. The stairs fall behind you.',g:[[0,160],[800,160]],c:[[190,472,70],[300,430,70],[410,390,70],[520,430,70],[630,472,70]],ex:[890,472]},
+{name:'Hide and Seek',sub:'It runs. It also locks.',hint:'Find the switch, then chase the door.',g:FG,sw:[120],lock:1,ex:[860,472],jump:[300,472],sp:[[420,50],[560,60]],fd:[[700,472]]},
+{name:'Sky High',sub:'Look up, then up again.',hint:'Climb. Do not look down.',g:[[0,160]],f:[[200,420,90],[340,350,90],[620,210,90],[760,280,100]],c:[[480,280,90]],ex:[830,280]},
+{name:'Gauntlet',sub:'Four traps and a patrol.',hint:'Hidden spikes, then a patrol. Keep your cool.',g:FG,ft:[[300,50,230],[420,50,350],[540,50,470],[660,50,590]],w:[[720,880,120]],ex:[915,472]},
+{name:'Elevator Pitch',sub:'Three ferries, one exit.',hint:'Each platform moves differently. Be patient.',g:[[0,150],[810,150]],mv:[[250,472,80,60,1,'x'],[480,430,80,70,1.3,'x'],[700,472,80,40,1.6,'x']],ex:[890,472]},
+{name:'Switch Maze',sub:'Everything is locked.',hint:'One switch opens the gates. The tree has opinions.',g:FG,sw:[100],gt:[[300,55],[560,55]],sp:[[420,60]],tr:[[700,1,640]],fd:[[480,472]],ex:[900,472],lock:1},
+{name:'Everything, Everywhere',sub:'A highlights reel of pain.',hint:'Crumble, hop, ride. You know this.',g:[[0,200],[430,80],[820,140]],c:[[230,472,100],[330,472,100]],mv:[[670,472,90,60,1.2,'x']],sg:[[460,'ALMOST']],ex:[895,472]},
+{name:'The Last Laugh',sub:'Trust nothing. Especially the door.',hint:'Switch, spikes, patrol, tree, and a running door.',g:FG,sw:[110],lock:1,ft:[[250,50,180],[380,50,310]],w:[[500,700,120]],tr:[[820,1,760]],sg:[[740,'THE REAL END']],ex:[900,472],jump:[300,472]}
+].map((l,i)=>({...l,accent:ACC[i%10],world:WORLDS[Math.floor(i/10)]}));
+const ls=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const state={screen:'home',level:0,player:null,camera:0,deaths:0,totalDeaths:Number(ls('tvDeaths')||0),unlocked:Number(ls('tvUnlocked')||1),cleared:JSON.parse(ls('tvCleared')||'{}'),best:Number(ls('tvBest')||0),elapsed:0,levelElapsed:0,paused:false,won:false,checkpoint:null,keys:{left:false,right:false,jump:false},jumpWas:false,worldTime:0,sound:true,audio:null,particles:[],toastTimer:null,platforms:[],hazards:[],trees:[],switches:[],exit:null,signs:[],moving:[],trick:false,buttonOn:false,deathFlash:0,startedAt:0};
+function beep(freq=440,duration=.07,type='sine',vol=.035){if(!state.sound)return;try{if(!state.audio)state.audio=new(window.AudioContext||window.webkitAudioContext)();const a=state.audio,o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=freq;g.gain.value=vol;o.connect(g);g.connect(a.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,a.currentTime+duration);o.stop(a.currentTime+duration)}catch(e){}}
+function toast(msg){const el=$('toast');el.textContent=msg;el.classList.remove('hidden');clearTimeout(state.toastTimer);state.toastTimer=setTimeout(()=>el.classList.add('hidden'),2200)}
+function fmt(t){let s=Math.floor(t||0);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function save(){try{localStorage.setItem('tvDeaths',state.totalDeaths);localStorage.setItem('tvUnlocked',state.unlocked);localStorage.setItem('tvCleared',JSON.stringify(state.cleared));localStorage.setItem('tvBest',state.best||0)}catch(e){}}
+function buildLevelGrid(){const grid=$('levelGrid');grid.innerHTML='';levelData.forEach((l,i)=>{const b=document.createElement('button');b.className='level-card'+(i>=state.unlocked?' locked':'');b.style.setProperty('--glow',l.accent);b.innerHTML=`<span class="num">W${Math.floor(i/10)+1} · LEVEL ${String(i+1).padStart(2,'0')}</span><span class="medal">${state.cleared[i]?'✦':i>=state.unlocked?'🔒':'↗'}</span><strong>${l.name}</strong><small>${l.sub}</small>`;b.disabled=i>=state.unlocked;b.addEventListener('click',()=>startLevel(i));grid.appendChild(b)})}
+function updateHomeStats(){$('statDeaths').textContent=state.totalDeaths;$('statBest').textContent=state.best?fmt(state.best):'—';$('statLevels').textContent=levelData.length;buildLevelGrid()}
+function platform(x,y,w,h=18,kind='solid',extra={}){return {x,y,w,h,kind,...extra}}
+function hazard(x,y,w,h=20,kind='spike',extra={}){return {x,y,w,h,kind,active:kind==='floorTrigger'?false:true,...extra}}
+function tree(x,y=FLOOR,scale=1,triggerX=null){return {x,y,scale,triggerX,triggered:false,fall:0}}
+function makeWorld(i){
+ const s=levelData[i],P=[],Z=[];
+ Object.assign(state,{platforms:P,hazards:Z,trees:[],switches:[],moving:[],signs:[],fakes:[],buttonOn:false,trick:false,checkpoint:null,camera:0,exitJumped:false});
+ (s.g||[]).forEach(([x,w])=>P.push(platform(x,FLOOR,w)));
+ (s.f||[]).forEach(([x,y,w])=>P.push(platform(x,y,w)));
+ (s.hp||[]).forEach(([x,y,w])=>P.push(platform(x,y,w,18,'secret',{hidden:true})));
+ (s.c||[]).forEach(([x,y,w])=>P.push(platform(x,y,w,18,'crumble')));
+ (s.vf||[]).forEach(([x,w,t])=>P.push(platform(x,FLOOR,w,18,'vanish',{trig:t})));
+ (s.spr||[]).forEach(([x,y,w])=>P.push(platform(x,y,w,12,'spring')));
+ (s.sp||[]).forEach(([x,w])=>Z.push(hazard(x,FLOOR-18,w,18,'spike')));
+ (s.ft||[]).forEach(([x,w,t])=>Z.push(hazard(x,FLOOR-18,w,18,'floorTrigger',{triggerX:t})));
+ (s.td||[]).forEach(([x,w,per,ph])=>Z.push(hazard(x,FLOOR-18,w,18,'timed',{period:per,phase:ph})));
+ (s.gt||[]).forEach(([x,w])=>Z.push(hazard(x,FLOOR-18,w,18,'gate')));
+ (s.w||[]).forEach(([a,b,v])=>Z.push(hazard(a,FLOOR-24,30,24,'walker',{x0:a,x1:b-30,vx:v})));
+ (s.tr||[]).forEach(([x,sc,t])=>state.trees.push(tree(x,FLOOR,sc,t)));
+ (s.sw||[]).forEach(x=>state.switches.push({x,y:FLOOR-26,w:28,h:26,on:false}));
+ (s.mv||[]).forEach(([x,y,w,amp,sp,ax])=>state.moving.push({x,y,w,h:16,bx:x,by:y,amp,speed:sp,ax,dx:0,dy:0}));
+ (s.sg||[]).forEach(([x,t])=>state.signs.push({x,y:FLOOR-95,text:t}));
+ (s.fd||[]).forEach(([x,y,d])=>state.fakes.push({x,y:y-72,w:42,h:72,die:!!d}));
+ state.exit={x:s.ex[0],y:s.ex[1]-72,w:42,h:72};
+ state.player={x:55,y:FLOOR-40,w:27,h:38,vx:0,vy:0,onGround:false,coy:0,face:1,spawnX:55,spawnY:FLOOR-40,dead:false,invuln:0};
+ state.levelElapsed=0;state.elapsed=state.elapsed||0;state.won=false;state.paused=false;state.particles=[];state.deathFlash=0;
+}
+function startLevel(i){if(i>=state.unlocked){toast('Clear the previous level to unlock this one.');return}state.level=i;state.screen='game';$('homeScreen').classList.add('hidden');$('gameScreen').classList.remove('hidden');$('gameOverlay').classList.add('hidden');$('gameLevelName').textContent=String(i+1).padStart(2,'0')+' — '+levelData[i].name;$('gameWorldName').textContent=levelData[i].world;$('levelHud').textContent=(i+1)+'/'+levelData.length;makeWorld(i);$('deathHud').textContent=state.deaths;$('timeHud').textContent='00:00';state.startedAt=performance.now();canvas.focus();beep(500,.08);ensureLoop()}
+function goHome(){state.screen='home';state.paused=false;$('gameScreen').classList.add('hidden');$('homeScreen').classList.remove('hidden');updateHomeStats()}
+function overlay(icon,title,text,buttons){$('overlayIcon').textContent=icon;$('overlayTitle').textContent=title;$('overlayText').textContent=text;const a=$('overlayActions');a.innerHTML='';buttons.forEach(b=>{const el=document.createElement('button');el.textContent=b.label;el.className=b.cls||'';el.onclick=b.action;a.appendChild(el)});$('gameOverlay').classList.remove('hidden')}
+function hideOverlay(){$('gameOverlay').classList.add('hidden')}
+function restart(){makeWorld(state.level);hideOverlay();beep(330,.07)}
+function die(reason='The level got you.'){if(state.player.dead||state.player.invuln>0)return;state.player.dead=true;state.deaths++;state.totalDeaths++;save();$('deathHud').textContent=state.deaths;state.deathFlash=.35;for(let i=0;i<18;i++)state.particles.push({x:state.player.x+13,y:state.player.y+18,vx:(Math.random()-.5)*280,vy:(Math.random()-.8)*260,life:.55,color:i%2?'#ff6b9d':'#7cf7e8'});beep(110,.22,'sawtooth',.045);setTimeout(()=>{if(state.screen==='game'&&state.player.dead)overlay('💀','NOT QUITE.',''+reason,[{label:'Try again',cls:'primary',action:restart},{label:'Back to menu',action:goHome}])},250)}
+function win(){if(state.won)return;state.won=true;state.cleared[state.level]=true;state.unlocked=Math.max(state.unlocked,Math.min(levelData.length,state.level+2));const t=state.levelElapsed;if(!state.best||t<state.best)state.best=t;save();beep(740,.13);setTimeout(()=>beep(980,.16),100);const last=state.level===levelData.length-1;overlay('✦',last?'YOU ESCAPED (FOR NOW)':'LEVEL CLEARED!',last?'All 30 levels beaten. The game remembers you.':'You survived '+levelData[state.level].name+'. Your next bad decision is ready.',[{label:last?'Play again':'Next level →',cls:'primary',action:()=>startLevel(last?0:state.level+1)},{label:'Choose levels',action:goHome}]);}
+function rects(a,b){return a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y}
+function spawnCheckpoint(x,y){state.checkpoint={x,y};toast('Checkpoint activated!');beep(660,.1)}
+function respawn(){const p=state.player;if(state.checkpoint){p.x=state.checkpoint.x;p.y=state.checkpoint.y;p.spawnX=p.x;p.spawnY=p.y}else{p.x=p.spawnX;p.y=p.spawnY}p.vx=0;p.vy=0;p.dead=false;p.invuln=.6;state.deathFlash=0;hideOverlay()}
+function triggerJump(){const p=state.player;if(p&&(p.onGround||p.coy>0)&&!p.dead&&!state.won&&!state.paused){p.vy=-610;p.onGround=false;p.coy=0;beep(290,.04,'square',.018)}}
+function update(dt){
+ if(state.screen!=='game'||state.paused||state.won||state.player.dead)return;
+ const p=state.player;state.worldTime+=dt;state.levelElapsed+=dt;state.elapsed+=dt;
+ for(const m of state.moving){const ox=m.x,oy=m.y,sn=Math.sin(state.worldTime*m.speed);if(m.ax==='x')m.x=m.bx+sn*m.amp;else m.y=m.by+sn*m.amp;m.dx=m.x-ox;m.dy=m.y-oy;
+  if(p.onGround&&Math.abs(p.y+p.h-oy)<4&&p.x+p.w>ox&&p.x<ox+m.w){p.x+=m.dx;p.y+=m.dy}}
+ const accel=2200,max=255,solid=()=>state.platforms.filter(pl=>!pl.gone&&!(pl.hidden&&!state.trick)).concat(state.moving);
+ if(state.keys.left){p.vx-=accel*dt;p.face=-1}if(state.keys.right){p.vx+=accel*dt;p.face=1}
+ if(!state.keys.left&&!state.keys.right)p.vx*=Math.pow(.0008,dt);
+ p.vx=Math.max(-max,Math.min(max,p.vx));p.x+=p.vx*dt;
+ for(const pl of solid()){if(pl.kind==='spring')continue;if(rects(p,pl)){if(p.vx>0)p.x=pl.x-p.w;else if(p.vx<0)p.x=pl.x+pl.w;p.vx=0}}
+ p.vy+=GRAVITY*dt;p.y+=p.vy*dt;p.onGround=false;
+ for(const pl of solid()){if(rects(p,pl)){if(p.vy>0){p.y=pl.y-p.h;p.vy=0;p.onGround=true;
+   if(pl.kind==='spring'){p.vy=-900;p.onGround=false;beep(700,.08,'triangle')}
+   if(pl.kind==='crumble'&&pl.t===undefined)pl.t=0}
+  else if(p.vy<0&&pl.kind!=='spring'){p.y=pl.y+pl.h;p.vy=0}}}
+ p.coy=p.onGround?.1:(p.coy||0)-dt;
+ for(const pl of state.platforms){if(pl.kind==='crumble'&&pl.t!==undefined){pl.t+=dt;if(pl.t>.45)pl.gone=true}if(pl.kind==='vanish'&&!pl.gone&&p.x+p.w>pl.trig)pl.gone=true}
+ if(p.y>H+80||p.x<-100)die('Gravity is undefeated.');if(p.invuln>0)p.invuln-=dt;
+ for(const z of state.hazards){
+   if(z.kind==='floorTrigger'&&!z.active&&p.x+p.w>z.triggerX){z.active=true;z.wake=0}
+   if(z.kind==='timed')z.active=(Math.sin((state.worldTime+z.phase)*Math.PI*2/z.period)>.12);
+   if(z.kind==='gate'&&state.buttonOn)z.active=false;
+   if(z.kind==='walker'){z.x+=z.vx*dt;if(z.x<z.x0||z.x>z.x1){z.vx*=-1;z.x=Math.max(z.x0,Math.min(z.x1,z.x))}}
+   if(z.active&&rects(p,{x:z.x,y:z.y-4,w:z.w,h:z.h+6}))die('A hidden trap was hiding in plain sight.');
+ }
+ for(const tr of state.trees){if(!tr.triggered&&p.x+p.w>tr.triggerX){tr.triggered=true;tr.fall=0;beep(150,.08,'triangle',.025)}if(tr.triggered)tr.fall=Math.min(1.5,tr.fall+dt*1.8);if(tr.triggered&&tr.fall>.5){const tx=tr.x-20*tr.scale,ty=tr.y-160*tr.scale+tr.fall*115*tr.scale;if(rects(p,{x:tx,y:ty,w:65*tr.scale,h:35*tr.scale}))die('The forest took that personally.');}}
+ for(const sw of state.switches){if(!sw.on&&rects(p,sw)){sw.on=true;state.buttonOn=true;state.trick=true;beep(820,.1);toast('Switch activated. Something changed.');}}
+ for(const fk of state.fakes){if(!fk.gone&&rects(p,fk)){fk.gone=true;if(fk.die)die('That pink door was a trap.');else{toast('That was a cardboard exit. Keep looking.');beep(160,.12,'square')}}}
+ const e=state.exit,lv=levelData[state.level];
+ if(lv.jump&&!state.exitJumped&&Math.abs(p.x-e.x)<110){state.exitJumped=true;e.x=lv.jump[0];e.y=lv.jump[1]-72;toast('The door ran away!');beep(200,.1,'square')}
+ if(!p.dead&&rects(p,e)){if(lv.lock&&!state.buttonOn){toast('Locked. Did you miss a switch?');p.x=p.x<e.x?e.x-p.w-2:e.x+e.w+2}else win()}
+ if(state.deathFlash>0)state.deathFlash-=dt;
+ state.particles=state.particles.filter(pt=>{pt.x+=pt.vx*dt;pt.y+=pt.vy*dt;pt.vy+=300*dt;pt.life-=dt;return pt.life>0});
+ $('timeHud').textContent=fmt(state.levelElapsed);
+}
+function drawBackground(){
+ const l=levelData[state.level],grad=ctx.createLinearGradient(0,0,0,H);grad.addColorStop(0,'#151a35');grad.addColorStop(1,'#101321');ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+ // stars
+ for(let i=0;i<54;i++){const x=(i*173+37)%W,y=(i*79+23)%300;ctx.globalAlpha=.25+.35*Math.sin(state.worldTime+i);ctx.fillStyle='#d6e6ff';ctx.fillRect(x,y,2,2)}ctx.globalAlpha=1;
+ ctx.fillStyle='#222744';ctx.beginPath();ctx.moveTo(0,380);for(let x=0;x<=W;x+=80)ctx.lineTo(x,330+Math.sin(x*.013+state.level)*32);ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.fill();
+ // background trees
+ if(state.trees.length>0){for(let i=0;i<9;i++){let x=(i*137-state.camera*.16%137+W)%W;ctx.fillStyle='#1b3a3a';ctx.fillRect(x,285,12,150);ctx.beginPath();ctx.moveTo(x-45,330);ctx.lineTo(x+6,230+(i%3)*14);ctx.lineTo(x+55,330);ctx.fill();}}
+ ctx.fillStyle='#101522';ctx.fillRect(0,FLOOR+22,W,H-FLOOR-22);
+}
+function drawPlatform(pl){
+ if(pl.gone&&pl.kind==='vanish')return;if(pl.hidden&&!state.trick)return;
+ let dy=0,al=1;if(pl.kind==='crumble'&&pl.t!==undefined){dy=pl.gone?(pl.t-.45)*400+8:Math.sin(pl.t*70)*2;al=pl.gone?Math.max(0,1-(pl.t-.45)*3):1}
+ if(al<=0)return;const k=pl.kind;ctx.globalAlpha=al;
+ ctx.fillStyle=k==='secret'?'#7cf7e8':k==='crumble'?'#6b4a3a':k==='spring'?'#c2571a':'#29314d';ctx.fillRect(pl.x,pl.y+dy,pl.w,pl.h);
+ ctx.fillStyle=k==='secret'?'#bafff5':k==='crumble'?'#ffcf9a':k==='spring'?'#ffb347':'#7cf7e8';ctx.fillRect(pl.x,pl.y+dy,pl.w,4);
+ if(k==='solid'){ctx.fillStyle='#1b2037';for(let x=pl.x+8;x<pl.x+pl.w;x+=25)ctx.fillRect(x,pl.y+8,9,3)}ctx.globalAlpha=1;
+}
+function drawHazard(z){
+ if(z.kind==='walker'){ctx.fillStyle='#ff5a7a';ctx.fillRect(z.x,z.y+6,z.w,z.h-6);ctx.beginPath();ctx.moveTo(z.x,z.y+6);ctx.lineTo(z.x+z.w/2,z.y-4);ctx.lineTo(z.x+z.w,z.y+6);ctx.fill();ctx.fillStyle='#fff';ctx.fillRect(z.x+7,z.y+11,5,5);ctx.fillRect(z.x+18,z.y+11,5,5);return}
+ if(z.kind==='gate'&&!z.active)return;
+ if(z.kind==='timed'&&!z.active){ctx.fillStyle='#4b5369';ctx.fillRect(z.x,z.y,z.w,4);return}
+ ctx.fillStyle=z.kind==='floorTrigger'?'#ff527f':'#ff6b91';ctx.beginPath();for(let x=z.x;x<z.x+z.w;x+=18){ctx.moveTo(x,z.y+z.h);ctx.lineTo(x+9,z.y-5);ctx.lineTo(x+18,z.y+z.h)}ctx.fill();ctx.fillStyle='#ffd2df';ctx.fillRect(z.x,z.y+z.h-3,z.w,3);
+}
+function drawTree(t){
+ const sc=t.scale;ctx.save();ctx.translate(t.x,t.y);ctx.scale(sc,sc);ctx.fillStyle='#604a45';ctx.fillRect(-8,-125,16,125);ctx.fillStyle='#2e6b5c';ctx.beginPath();ctx.moveTo(-52,-80);ctx.lineTo(0,-185);ctx.lineTo(54,-80);ctx.fill();ctx.fillStyle='#43876a';ctx.beginPath();ctx.moveTo(-39,-119);ctx.lineTo(0,-205);ctx.lineTo(42,-119);ctx.fill();
+ if(t.triggered){ctx.translate(0,Math.min(115,t.fall*110));ctx.rotate(Math.min(1.2,t.fall*.85));ctx.fillStyle='#604a45';ctx.fillRect(0,-130,15,130);ctx.fillStyle='#2e6b5c';ctx.beginPath();ctx.moveTo(5,-130);ctx.lineTo(90,-175);ctx.lineTo(25,-95);ctx.fill();}
+ ctx.restore();
+}
+function drawDoor(d,fake=false){
+ if(!d||d.x<-50)return;ctx.fillStyle=fake?'#6e526b':'#5545a5';ctx.fillRect(d.x,d.y,d.w,d.h);ctx.fillStyle=fake?'#ff93a8':'#c6b9ff';ctx.fillRect(d.x,d.y,5,d.h);ctx.fillRect(d.x,d.y,d.w,5);ctx.fillRect(d.x+d.w-5,d.y,5,d.h);ctx.fillStyle=fake?'#ff6b9d':'#7cf7e8';ctx.beginPath();ctx.arc(d.x+d.w-11,d.y+d.h*.58,3,0,Math.PI*2);ctx.fill();ctx.fillStyle='#16152a';ctx.fillRect(d.x+10,d.y+13,d.w-20,d.h-13);
+}
+function drawSign(s){ctx.fillStyle='#b28a59';ctx.fillRect(s.x+17,s.y+22,5,30);ctx.fillStyle='#dfc08c';ctx.fillRect(s.x,s.y,40,24);ctx.fillStyle='#27223a';ctx.font='bold 8px system-ui';ctx.textAlign='center';ctx.fillText(s.text.slice(0,12),s.x+20,s.y+15);ctx.textAlign='left'}
+function drawPlayer(p){
+ if(p.invuln>0&&Math.floor(state.worldTime*18)%2===0)return;ctx.save();ctx.translate(p.x+p.w/2,p.y+p.h/2);if(p.face<0)ctx.scale(-1,1);ctx.fillStyle='#57c8c8';ctx.fillRect(-13,-14,26,29);ctx.fillStyle='#9efff0';ctx.fillRect(-13,-14,26,7);ctx.fillStyle='#192039';ctx.fillRect(2,-5,4,6);ctx.fillRect(-7,-5,4,6);ctx.fillStyle='#ff6b9d';ctx.fillRect(-9,15,7,6);ctx.fillRect(3,15,7,6);ctx.fillStyle='#d8fff6';ctx.fillRect(5,-5,2,2);ctx.restore();
+}
+function render(){
+ if(state.screen!=='game')return;
+ ctx.save();drawBackground();
+ // World objects stay in camera-space for current compact levels.
+ state.platforms.forEach(drawPlatform);
+ state.hazards.forEach(drawHazard);
+ state.trees.forEach(drawTree);
+ state.moving.forEach(m=>{ctx.fillStyle='#6e6ad0';ctx.fillRect(m.x,m.y,m.w,m.h);ctx.fillStyle='#d2caff';ctx.fillRect(m.x,m.y,m.w,4)});
+ state.switches.forEach(s=>{ctx.fillStyle=s.on?'#7cf7e8':'#ffd36e';ctx.fillRect(s.x,s.y,s.w,s.h);ctx.fillStyle='#23243b';ctx.fillRect(s.x+6,s.y+6,s.w-12,s.h-6)});
+ state.signs.forEach(drawSign);
+ state.fakes.forEach(f=>{if(!f.gone)drawDoor(f,true)});drawDoor(state.exit,false);
+ drawPlayer(state.player);
+ for(const pt of state.particles){ctx.globalAlpha=Math.max(0,pt.life/.55);ctx.fillStyle=pt.color;ctx.fillRect(pt.x,pt.y,4,4)}ctx.globalAlpha=1;
+ if(state.deathFlash>0){ctx.fillStyle=`rgba(255,70,115,${state.deathFlash*.5})`;ctx.fillRect(0,0,W,H)}
+ ctx.font='12px system-ui';
+ ctx.fillStyle='#101525d9';ctx.fillRect(18,18,Math.min(360,ctx.measureText(levelData[state.level].hint).width+28),34);ctx.strokeStyle='#3b4567';ctx.strokeRect(18,18,Math.min(360,ctx.measureText(levelData[state.level].hint).width+28),34);ctx.fillStyle='#c8d0ef';ctx.font='12px system-ui';ctx.fillText(levelData[state.level].hint,30,39,330);
+ ctx.restore();
+}
+let last=0,raf=false;
+function loop(now){if(state.screen!=='game'){raf=false;return}let dt=Math.min(.032,(now-last)/1000||0);last=now;update(dt);render();if(state.screen==='game')requestAnimationFrame(loop);else raf=false}
+function ensureLoop(){if(!raf){raf=true;last=performance.now();requestAnimationFrame(loop)}}
+function showHow(){overlay('🎮','HOW TO PLAY','Move with ← and →. Jump with Space or ↑. On mobile, use the on-screen buttons. Watch the level, experiment, and press R to restart. Your progress saves on this device.',[{label:'Got it',cls:'primary',action:hideOverlay}]);}
+$('continueBtn').onclick=()=>startLevel(Math.min(state.unlocked-1,Math.max(0,state.unlocked-1)));
+$('levelSelectBtn').onclick=()=>{$('levelSection').scrollIntoView({behavior:'smooth',block:'start'})};
+$('howBtn').onclick=showHow;$('restartBtn').onclick=restart;$('exitBtn').onclick=()=>overlay('☰','LEAVE THIS LEVEL?','Your unlocked levels and cleared levels are saved on this device.',[{label:'Keep playing',cls:'primary',action:hideOverlay},{label:'Back to menu',action:goHome}]);
+$('soundBtn').onclick=()=>{state.sound=!state.sound;$('soundBtn').textContent=state.sound?'🔊 Sound':'🔇 Sound';if(state.sound)beep(550,.07)};
+window.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(['arrowleft','arrowright','arrowup',' ','a','d','w'].includes(k))e.preventDefault();if(k==='arrowleft'||k==='a')state.keys.left=true;if(k==='arrowright'||k==='d')state.keys.right=true;if(k==='arrowup'||k==='w'||k===' ') {if(!state.keys.jump)triggerJump();state.keys.jump=true}if(k==='r'&&state.screen==='game')restart();if(k==='escape'&&state.screen==='game')goHome();});
+window.addEventListener('keyup',e=>{const k=e.key.toLowerCase();if(k==='arrowleft'||k==='a')state.keys.left=false;if(k==='arrowright'||k==='d')state.keys.right=false;if(k==='arrowup'||k==='w'||k===' ')state.keys.jump=false});
+window.addEventListener('blur',()=>{state.keys.left=state.keys.right=state.keys.jump=false});
+document.querySelectorAll('[data-key]').forEach(btn=>{
+ const k=btn.dataset.key;
+ const down=e=>{e.preventDefault();btn.classList.add('active');if(k==='jump'){if(!state.keys.jump)triggerJump();state.keys.jump=true}else state.keys[k]=true};
+ const up=e=>{e.preventDefault();btn.classList.remove('active');if(k==='jump')state.keys.jump=false;else state.keys[k]=false};
+ btn.addEventListener('pointerdown',down);btn.addEventListener('pointerup',up);btn.addEventListener('pointercancel',up);btn.addEventListener('pointerleave',up);
+});
+canvas.addEventListener('pointerdown',()=>canvas.focus());
+$('continueBtn').addEventListener('click',ensureLoop);
+updateHomeStats();
+})();
+</script>
+</body>
+</html>
